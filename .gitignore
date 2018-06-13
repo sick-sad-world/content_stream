@@ -1,0 +1,7 @@
+node_modules
+.map
+build
+dist
+.vscode
+npm-debug.log
+package-lock.json

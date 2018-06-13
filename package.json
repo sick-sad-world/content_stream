@@ -1,0 +1,57 @@
+{
+  "name": "content_stream",
+  "version": "0.0.1",
+  "description": "",
+  "main": "assets/index.js",
+  "scripts": {
+    "start": "webpack-dev-server --inline --port=3000 --mode=development",
+    "prebundle": "rimraf ./dist",
+    "bundle": "webpack --progress --mode=development",
+    "prebuild": "rimraf ./build",
+    "build": "webpack --progress --mode=production",
+    "clean": "rimraf ./dist ./build"
+  },
+  "author": "Ihor Koptielov",
+  "license": "MIT",
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "modules": false,
+          "useBuiltIns": true,
+          "debug": true,
+          "targets": {
+            "chrome": 63,
+            "firefox": 58
+          }
+        }
+      ],
+      "react",
+      "stage-1"
+    ],
+    "plugins": [
+      "lodash"
+    ],
+    "env": {
+      "development": {
+        "plugins": ["react-hot-loader/babel", ["styled-components", { "displayName": true, "preprocess": false } ]]
+      },
+      "production": {
+        "plugins": [["styled-components", { "displayName": true, "preprocess": false } ]],
+        "presets": [
+          "react-optimize"
+        ]
+      }
+    }
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
+
+// dev
+babel-core babel-loader babel-plugin-lodash babel-preset-env babel-preset-react babel-preset-react-optimize babel-preset-stage-0 eslint eslint-config-airbnb eslint-plugin-babel eslint-plugin-import eslint-plugin-react extract-text-webpack-plugin file-loader html-webpack-plugin image-webpack-loader react-hot-loader svg-inline-loader uglifyjs-webpack-plugin url-loader webpack webpack-bundle-analyzer webpack-cli webpack-dev-server yargs
+
+
+// dep
+babel-polyfill classnames lodash normalize.css prop-types react react-dom react-redux react-router react-router-dom react-router-redux react-select react-transition-group redux
