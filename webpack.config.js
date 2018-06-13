@@ -41,10 +41,8 @@ module.exports = {
   cache: true,
   stats: 'normal',
   entry: {
-    app: {
-      app: './src/app.js',
-      index: './src/index.js'
-    }
+    app: ['./src/app.js'],
+    index: ['./src/index.js']
   },
   output: {
     path: path.join( __dirname, DEST),
@@ -64,7 +62,7 @@ module.exports = {
         commons: {
           test: /[\\/]node_modules[\\/]/,
           name: 'vendor',
-          chunks: ['app']
+          chunks: 'all'
         }
       }
     }
