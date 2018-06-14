@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const { mode, c, port, watch } = require('yargs').argv;
@@ -10,13 +11,19 @@ const P = mode === 'production'
 const DEST = (P) ? '/build' : '/dist';
 
 const PLUGINS = [
+  new CopyWebpackPlugin([
+    { from: path.resolve(__dirname, CONTEXT, 'css/app.css'), to: path.join( __dirname, DEST, 'css') },
+    { from: path.resolve(__dirname, CONTEXT, 'css/index.css'), to: path.join( __dirname, DEST, 'css') }
+  ]),
   new HtmlWebpackPlugin({
     template: './index.html',
+    filename: './index.html',
     title: 'Content Stream',
     chunks: ['index']
   }),
   new HtmlWebpackPlugin({
     template: './app.html',
+    filename: './app.html',
     title: 'Content Stream',
     chunks: ['vendor', 'app']
   })
