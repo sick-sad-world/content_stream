@@ -12,6 +12,7 @@ const DEST = (P) ? '/build' : '/dist';
 
 const PLUGINS = [
   new CopyWebpackPlugin([
+    { from: path.resolve(__dirname, CONTEXT, 'css/theme.css'), to: path.join( __dirname, DEST, 'css') },
     { from: path.resolve(__dirname, CONTEXT, 'css/app.css'), to: path.join( __dirname, DEST, 'css') },
     { from: path.resolve(__dirname, CONTEXT, 'css/index.css'), to: path.join( __dirname, DEST, 'css') }
   ]),
