@@ -1,0 +1,167 @@
+html, body {
+  margin: 0;
+  color: #34495e;
+  background: #fff;
+  line-height: 1.75;
+  font-family: 13px/1.75 Lato Arial sans-serif;
+}
+
+a {
+  color: #34495e;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:hover,
+a:focus {
+  text-decoration: underline;
+  outline: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  line-height: 1.875;
+  font-weight: 700;
+}
+
+h1, .text-h1 {
+  font-size: 54px;
+}
+
+h2, .text-h2 {
+  font-size: 32px;
+}
+
+h3, .text-h3 {
+  font-size: 24px;
+}
+
+h4, .text-h4 {
+  font-size: 18px;
+}
+
+h5, .text-h5 {
+  font-size: 13px;
+}
+
+h6, .text-h6 {
+  font-size: 13px;
+}
+
+mark {
+  background-color: #45a2e0;
+  color: #fff;
+}
+
+dl {
+  
+}
+
+dt {
+  font-weight: 400;
+}
+dt:after {
+  content: ":";
+}
+
+dd {
+  position: relative;
+  padding-left: 1.8em;
+}
+dd:before {
+  display: inline-block;
+  content: "—";
+  position: absolute;
+  left: 0.4em;
+}
+
+ul, ol {
+  padding-left: 1.4em;
+}
+
+ul, ol ol, ul {
+  margin: 0;
+}
+
+ol ol {
+  list-style-type: upper-alpha;
+}
+
+hr {
+  height: 1px;
+  border: 0;
+  background: #99afc5;
+}
+
+code, samp, kbd {
+  display: inline-block;
+  padding: 0 0.5em;
+}
+
+pre {
+  padding: 0.5em;
+  line-height: 1.125;
+  overflow: auto;
+}
+
+blockquote {
+  padding: 0.5em 1em;
+}
+
+img {
+	display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+svg:not(:root), svg use {
+  pointer-events: none;
+}
+
+table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption {
+  text-align: left;
+  font-size: $f-h3;
+  line-height: 1;
+}
+
+td {
+
+}
+
+td, th {
+  padding: 0.25em 0.5em;
+}
+
+tr:last-child td, tr:last-child th {
+
+}
+
+thead td, th {
+  text-align: left;
+}
+
+tfoot {
+
+}
+
+button, input, select, textarea {
+  margin: 0;
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 100%;
+  line-height: normal;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+button:focus, input:focus, select:focus, textarea:focus {
+  outline: 0;
+}
