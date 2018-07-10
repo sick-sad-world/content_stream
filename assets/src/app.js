@@ -1,6 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
 import styled from 'styled-components';
+import '../css/theme.css';
+import '../css/app.css';
 
 // Create a Title component that'll render an <h1> tag with some styles
 const Title = styled.h1`

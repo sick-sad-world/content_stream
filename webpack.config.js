@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const { mode, c, port, watch } = require('yargs').argv;
@@ -10,15 +11,18 @@ const CONTEXT = 'assets';
 const P = mode === 'production'
 const DEST = (P) ? '/build' : '/dist';
 
+const Extract = new ExtractTextPlugin({
+  filename: '[name].css'
+});
+
+const makeOutput = (path) => (P) ? `${path}/[hash:12].[ext]` : `${path}/[name].[ext]`;
+
 const PLUGINS = [
-  new CopyWebpackPlugin([
-    { from: path.resolve(__dirname, CONTEXT, 'css/theme.css'), to: path.join( __dirname, DEST, 'css') },
-    { from: path.resolve(__dirname, CONTEXT, 'css/app.css'), to: path.join( __dirname, DEST, 'css') },
-    { from: path.resolve(__dirname, CONTEXT, 'css/index.css'), to: path.join( __dirname, DEST, 'css') }
-  ]),
+  Extract,
   new HtmlWebpackPlugin({
     template: './index.html',
     filename: './index.html',
+    inject: 'head',
     title: 'Content Stream',
     chunks: ['index']
   }),
@@ -27,7 +31,7 @@ const PLUGINS = [
     filename: './app.html',
     title: 'Content Stream',
     chunks: ['vendor', 'app']
-  })
+  }),
 ];
 
 if (!P) {
@@ -54,7 +58,6 @@ module.exports = {
   },
   output: {
     path: path.join( __dirname, DEST),
-    publicPath: '/',
     filename: (P) ? '[chunkhash:12].js' : '[name].js'
   },
   devServer: {
@@ -85,6 +88,13 @@ module.exports = {
       exclude: /node_modules/,
       use: 'babel-loader'
     }, {
+      test: /\.css$/,
+      exclude: /node_modules/,
+      use: Extract.extract({
+        fallback: 'style-loader',
+        use: 'css-loader'
+      })
+    }, {
       test: /\.svg$/,
       include: /icons|img/,
       exclude: /node_modules/,
@@ -101,20 +111,19 @@ module.exports = {
       use: [{
         loader: 'file-loader',
         options: {
-          name: (P) ? 'img/[hash:12].[ext]' : 'img/[name].[ext]'
+          name: makeOutput('img')
         }
       }, {
         loader: 'image-webpack-loader'
       }]
     }, {
-      test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9#=&.]+)?$/,
-      include: /font/,
+      test: /\.woff2?$/,
+      include: /fonts/,
       exclude: /(node_modules|img)/,
       use: {
-        loader: 'url-loader',
+        loader: 'file-loader',
         options: {
-          limit: 8192,
-          name: (P) ? 'font/[hash:12].[ext]' : 'font/[name].[ext]'
+          name: makeOutput('fonts')
         }
       }
     }]
