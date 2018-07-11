@@ -1,11 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
-const { mode, c, port, watch } = require('yargs').argv;
+const { mode, port } = require('yargs').argv;
 
 const CONTEXT = 'assets';
 const P = mode === 'production'
@@ -22,9 +21,8 @@ const PLUGINS = [
   new HtmlWebpackPlugin({
     template: './index.html',
     filename: './index.html',
-    inject: 'head',
     title: 'Content Stream',
-    chunks: ['index']
+    chunks: ['vendor', 'index']
   }),
   new HtmlWebpackPlugin({
     template: './app.html',
@@ -32,6 +30,9 @@ const PLUGINS = [
     title: 'Content Stream',
     chunks: ['vendor', 'app']
   }),
+  new BundleAnalyzerPlugin({
+    analyzerMode: (port) ? 'server' : 'static'
+  })
 ];
 
 if (!P) {
@@ -40,10 +41,6 @@ if (!P) {
 
 if (port) {
   PLUGINS.push(new webpack.HotModuleReplacementPlugin());
-} else if (!port && !c) {
-  PLUGINS.push(new BundleAnalyzerPlugin({
-    analyzerMode: (watch) ? 'server' : 'static'
-  }));
 }
 
 
@@ -92,7 +89,12 @@ module.exports = {
       exclude: /node_modules/,
       use: Extract.extract({
         fallback: 'style-loader',
-        use: 'css-loader'
+        use: [{
+          loader: 'css-loader',
+          options: {
+            sourceMap: P
+          }
+        }]
       })
     }, {
       test: /\.svg$/,

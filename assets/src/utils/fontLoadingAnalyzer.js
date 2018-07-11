@@ -6,8 +6,7 @@ export default function fontLoadingAnalyzer(fonts = [], className = 'fonts-loade
   }
 
   if ('fonts' in document) {
-    Promise.all(fonts.map(document.fonts.load)).then(() => {
-      console.log(document.fonts);
+    Promise.all(fonts.map((font) => document.fonts.load(font))).then(() => {
       document.documentElement.classList.add(className);
       sessionStorage.fontsLoadedFoutWithClass = true;
     });
