@@ -43,7 +43,7 @@ html, body {
   color: #34495e;
   background: #fff;
   line-height: 1.75;
-  font: 13px/2.25 serif;
+  font: 13px/2.25 sans-serif;
 }
 
 .fonts-loaded body {

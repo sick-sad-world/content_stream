@@ -22,7 +22,7 @@ const PLUGINS = [
     template: './index.html',
     filename: './index.html',
     title: 'Content Stream',
-    chunks: ['vendor', 'index']
+    chunks: ['index']
   }),
   new HtmlWebpackPlugin({
     template: './app.html',
@@ -64,17 +64,17 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx']
   },
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        commons: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendor',
-          chunks: 'all'
-        }
-      }
-    }
-  },
+  // optimization: {
+  //   splitChunks: {
+  //     cacheGroups: {
+  //       vendor: {
+  //         test: /[\\/]node_modules[\\/])/,
+  //         name: 'vendor',
+  //         chunks: 'all'
+  //       }
+  //     }
+  //   }
+  // },
   watchOptions: {
     ignored: /node_modules/
   },
