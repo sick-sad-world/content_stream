@@ -1,0 +1,226 @@
+/* 
+  Inner elements
+  ==============================================================================
+*/
+
+.logotype {
+  width: 200px;
+  height: var(--layout-navbar-height);
+  background-color: rgba(255,255,255,.25);
+}
+
+/* 
+  Catch text on Banner section
+  ==============================================================================
+*/
+
+.catch-text {
+
+}
+
+.catch-text hgroup {
+  margin-bottom: 40px;
+}
+
+.catch-text h1 {
+  font-size: 62px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.catch-text h2 {
+  line-height: 1;
+}
+
+.catch-text p {
+  font-size: var(--theme-size-h3);
+  text-transform: uppercase;
+  line-height: 1.25;
+  margin-bottom: 45px;
+  font-weight: 300;
+}
+
+.catch-text button {
+  height: 46px;
+  line-height: 46px;
+  border-radius: 23px;
+  width: 200px;
+  font-size: 1.25em;
+  font-weight: 700;
+  box-shadow: var(--theme-shadow-z2);
+}
+
+/* 
+  Stylized interactive App preview
+  ==============================================================================
+*/
+
+.app-preview {
+  height: 527px;
+  border-radius: 2px;
+  background-color: #e8e8e8;
+  color: #fff;
+  box-shadow: var(--theme-shadow-z3);
+}
+
+.app-preview .frame {
+  display: block;
+  background-color: #e5e2e4;
+  padding: 4px 40px;
+}
+
+.app-preview .controls, .app-preview .controls:before, .app-preview .controls:after {
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+
+.app-preview .controls {
+  background-color: #ffbd2e;
+  position: relative;
+}
+
+.controls:before, .app-preview .controls:after {
+  content: "";
+  position: absolute;
+  top: 0;
+}
+
+.app-preview .controls:before {
+  background-color: #ff5f58;
+  left: -24px;
+}
+
+.app-preview .controls:after {
+  background-color: #2ac940;
+  right: -24px;
+}
+
+.app-preview .header {
+  background-color: #386ee9;
+  height: 64px;
+  padding: 6px 16px 0;
+}
+
+.app-preview .header b, .app-preview .header span {
+  display: block;
+}
+
+.app-preview .header span {
+  text-indent: 2px;
+}
+
+/* 
+  Common layout
+  ==============================================================================
+*/
+
+.page-section {
+  position: relative;
+}
+
+.page-section .layout {
+  position: relative;
+  width: var(--layout-desktop-width);
+  margin: auto;
+  display: grid;
+  padding: 0 var(--layout-gap);
+  grid-gap: var(--layout-gap);
+  color: inherit;
+  z-index: 2;
+}
+
+/* 
+  Top Navigation pane
+  ==============================================================================
+*/
+
+#top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--layout-navbar-height);
+  border-color: var(--theme-color-secondary);
+  color: var(--theme-color-secondary);
+  z-index: 10;
+}
+
+#top-nav .layout {
+  grid-template-columns: auto auto 100px 100px;
+  grid-template-rows: var(--layout-navbar-height);
+  grid-template-areas: "logotype logotype sign-in sign-up";
+  align-items: center;
+}
+
+#top-nav .logotype {
+  grid-area: logotype; 
+}
+
+#top-nav .sign-in {
+  grid-area: sign-in;
+}
+
+#top-nav .sign-up {
+  grid-area: sign-up;
+}
+
+#top-nav button.lined {
+  color: inherit;
+  border-color: inherit;
+}
+
+/* 
+  01 Banner section
+  ==============================================================================
+*/
+
+#banner {
+  height: 100vh;
+  background-color: var(--theme-color-accent);
+  color: var(--theme-color-secondary);
+}
+
+#banner .layout {
+  height: 100%;
+  grid-template-columns: 8fr 4fr;
+  align-items: center;
+}
+
+#banner .bg {
+  position: absolute;
+  top: 1vh;
+  fill: #3e8bc0;
+  opacity: .5;
+  z-index: 0;
+}
+
+/* #banner .layout > .text {
+  align-self: center;
+} */
+
+/* 
+  02 How it works section
+  ==============================================================================
+*/
+
+#description {
+  z-index: 2;
+  background-color: var(--theme-color-secondary);
+}
+
+/* 
+  03 Simple registration stripe
+  ==============================================================================
+*/
+
+/* 
+  04 Statistics section
+  ==============================================================================
+*/
+
+/* 
+  05 Footer
+  ==============================================================================
+*/

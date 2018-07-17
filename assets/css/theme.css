@@ -19,16 +19,16 @@
 }
 @font-face {
   font-family: Lato;
-  src: url('../fonts/LatoLatin-Bold.woff2') format('woff2'),
-       url('../fonts/LatoLatin-Bold.woff') format('woff');
-  font-weight: 700;
-}
-@font-face {
-  font-family: Lato;
   src: url('../fonts/LatoLatin-Italic.woff2') format('woff2'),
        url('../fonts/LatoLatin-Italic.woff') format('woff');
   font-style: italic;
   font-weight: 400;
+}
+@font-face {
+  font-family: Lato;
+  src: url('../fonts/LatoLatin-Bold.woff2') format('woff2'),
+       url('../fonts/LatoLatin-Bold.woff') format('woff');
+  font-weight: 700;
 }
 @font-face {
   font-family: Lato;
@@ -38,12 +38,45 @@
   font-style: italic;
 }
 
-html, body {
+:root {
+  --theme-color-main: #34495e;
+  --theme-color-adjacent: #5b7690;
+  --theme-color-secondary: #fff;
+  --theme-color-accent: #45a2e0;
+  --theme-color-accent-secondary: #f1c40f;
+  --theme-color-border: #99afc5;
+  --theme-color-highlight: #ecf0f1;
+  --theme-border-radius: 16px;
+  --theme-size-element: calc(var(--theme-border-radius) * 2);
+  --theme-size-element-gutter: 16px;
+  --theme-size-text: 13px;
+  --theme-size-h1: 54px;
+  --theme-size-h2: 32px;
+  --theme-size-h3: 24px;
+  --theme-size-h4: 18px;
+  --theme-size-h5: 13px;
+  --theme-size-h6: 13px;
+  --theme-shadow-z1: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24);
+  --theme-shadow-z2: 0 2px 4px rgba(0,0,0,.16), 0 2px 4px rgba(0,0,0,.23);
+  --theme-shadow-z3: 0 10px 20px rgba(0,0,0,.19), 0 6px 6px rgba(0,0,0,.23);
+  --theme-shadow-z4: 0 14px 28px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.22);
+  --theme-shadow-z5: 0 19px 38px rgba(0,0,0,.30), 0 15px 12px rgba(0,0,0,.22);
+  --layout-gap: 16px;
+  --layout-desktop-width: 1200px;
+  --layout-navbar-height: 50px;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
   margin: 0;
-  color: #34495e;
-  background: #fff;
-  line-height: 1.75;
-  font: 13px/2.25 sans-serif;
+  padding: 0;
+}
+
+html, body {
+  color: var(--theme-color-main);
+  background: var(--theme-color-secondary);
+  font: var(--theme-size-text)/1.5 sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 .fonts-loaded body {
@@ -51,7 +84,7 @@ html, body {
 }
 
 a {
-  color: #34495e;
+  color: var(--theme-color-main);
   text-decoration: none;
   cursor: pointer;
 }
@@ -65,36 +98,36 @@ a:focus {
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
   line-height: 1.875;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 h1, .text-h1 {
-  font-size: 54px;
+  font-size: var(--theme-size-h1);
 }
 
 h2, .text-h2 {
-  font-size: 32px;
+  font-size: var(--theme-size-h2);
 }
 
 h3, .text-h3 {
-  font-size: 24px;
+  font-size: var(--theme-size-h3);
 }
 
 h4, .text-h4 {
-  font-size: 18px;
+  font-size: var(--theme-size-h4);
 }
 
 h5, .text-h5 {
-  font-size: 13px;
+  font-size: var(--theme-size-h5);
 }
 
 h6, .text-h6 {
-  font-size: 13px;
+  font-size: var(--theme-size-h6);
 }
 
 mark {
-  background-color: #45a2e0;
-  color: #fff;
+  background-color: var(--theme-color-highlight);
+  /* color: var(--theme-color-secondary); */
 }
 
 dl {
@@ -134,7 +167,7 @@ ol ol {
 hr {
   height: 1px;
   border: 0;
-  background: #99afc5;
+  background: var(--theme-color-border);
 }
 
 code, samp, kbd {
@@ -171,7 +204,7 @@ table {
 
 caption {
   text-align: left;
-  font-size: $f-h3;
+  font-size: var(--theme-size-h3);
   line-height: 1;
 }
 
@@ -200,12 +233,52 @@ button, input, select, textarea {
   display: inline-block;
   vertical-align: middle;
   max-width: 100%;
+  padding: 0;
+  background: none;
+  border: none;
   line-height: normal;
-  color: inherit;
+  color: var(--theme-color-main);
   font-family: inherit;
   font-size: inherit;
+  -webkit-appearance: none;
+  -moz-appearance:    none;
+  appearance:         none;
+}
+
+.fonts-loaded button, .fonts-loaded input, .fonts-loaded select, .fonts-loaded textarea {
+  font-family: Lato sans-serif;
 }
 
 button:focus, input:focus, select:focus, textarea:focus {
   outline: 0;
+}
+
+/* 
+  Buttons
+  ==============================================================================
+*/
+button {
+  padding: 0 var(--theme-size-element-gutter);
+  line-height: var(--theme-size-element);
+  height: var(--theme-size-element);
+  font-weight: 500;
+  border-radius: var(--theme-border-radius);
+}
+
+button.lined {
+  line-height: calc(var(--theme-size-element) - 2px);
+  border: 1px solid var(--theme-color-main);
+}
+
+button.lined:focus, button.lined:hover {
+
+}
+
+button.solid {
+  background: var(--theme-color-accent-secondary);
+  box-shadow: var(--theme-shadow-z1);
+}
+
+button.solid:focus, button.solid:hover {
+
 }
