@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
@@ -15,6 +16,8 @@ const Extract = new ExtractTextPlugin({
 });
 
 const makeOutput = (path) => (P) ? `${path}/[hash:12].[ext]` : `${path}/[name].[ext]`;
+
+const makeCopyEntry = (entry) => ({ from: entry, to: path.join(__dirname, DEST, entry) })
 
 const PLUGINS = [
   Extract,
@@ -32,7 +35,11 @@ const PLUGINS = [
   }),
   new BundleAnalyzerPlugin({
     analyzerMode: (port) ? 'server' : 'static'
-  })
+  }),
+  new CopyWebpackPlugin([
+    makeCopyEntry('img/map.svg'),
+    makeCopyEntry('img/clouds_triple.svg')
+  ])
 ];
 
 if (!P) {
@@ -58,7 +65,7 @@ module.exports = {
     filename: (P) ? '[chunkhash:12].js' : '[name].js'
   },
   devServer: {
-    hot: !!port,
+    hot: true,
     contentBase: path.resolve(__dirname, CONTEXT),
   },
   resolve: {

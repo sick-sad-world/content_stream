@@ -243,6 +243,10 @@
 #banner .bg {
   position: absolute;
   top: 1vh;
+  left: 0;
+  right: 0;
+  width: 80%;
+  margin: auto;
   fill: #3e8bc0;
   opacity: .5;
   z-index: 0;
@@ -260,6 +264,18 @@
 #description {
   z-index: 2;
   background-color: var(--theme-color-secondary);
+}
+
+#description .layout {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+#description .bg {
+  position: absolute;
+  bottom: 100%;
+  width: 100%;
+  fill: var(--theme-color-secondary);
+  transform: rotate(180deg);
 }
 
 /* 
