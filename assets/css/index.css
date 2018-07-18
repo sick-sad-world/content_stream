@@ -15,7 +15,7 @@
 */
 
 .catch-text {
-
+  --button-size: 46px;
 }
 
 .catch-text hgroup {
@@ -41,9 +41,9 @@
 }
 
 .catch-text button {
-  height: 46px;
-  line-height: 46px;
-  border-radius: 23px;
+  height: var(--button-size);
+  line-height: var(--button-size);
+  border-radius: calc(var(--button-size) * 0.5);
   width: 200px;
   font-size: 1.25em;
   font-weight: 700;
@@ -57,22 +57,37 @@
 
 .app-preview {
   height: 527px;
+  display: flex;
+  flex-direction: column;
   border-radius: 2px;
   background-color: #e8e8e8;
   color: #fff;
   box-shadow: var(--theme-shadow-z3);
+  --control-size: 16px;
 }
 
 .app-preview .frame {
   display: block;
   background-color: #e5e2e4;
   padding: 4px 40px;
+  flex: 0 0 auto;
+}
+
+.app-preview .square {
+  width: 60px;
+  height: 60px;
+  border-radius: 2px;
+}
+
+.app-preview .line {
+  height: 12px;
+  border-radius: 12px;
 }
 
 .app-preview .controls, .app-preview .controls:before, .app-preview .controls:after {
   display: block;
-  width: 16px;
-  height: 16px;
+  width: var(--control-size);
+  height: var(--control-size);
   border-radius: 50%;
 }
 
@@ -89,17 +104,17 @@
 
 .app-preview .controls:before {
   background-color: #ff5f58;
-  left: -24px;
+  left: calc((var(--control-size) + 8px) * -1);
 }
 
 .app-preview .controls:after {
   background-color: #2ac940;
-  right: -24px;
+  right: calc((var(--control-size) + 8px) * -1);
 }
 
 .app-preview .header {
+  flex: 0 0 64px;
   background-color: #386ee9;
-  height: 64px;
   padding: 6px 16px 0;
 }
 
@@ -109,6 +124,43 @@
 
 .app-preview .header span {
   text-indent: 2px;
+}
+
+.app-preview .content {
+  padding: 8px 16px;
+  list-style-type: none;
+  overflow-y: auto;
+}
+
+.app-preview .content span {
+  display: block;
+  background-color: rgba(0,0,0,.10);
+  overflow: hidden;
+}
+
+.app-preview .content span.dark {
+  background-color: rgba(0,0,0,.25);
+}
+
+.app-preview .content li {
+  padding: 8px;
+}
+
+.app-preview .content li.fresh {
+  background-color: #f9e594;
+}
+
+.app-preview .content .square {
+  float: left;
+  margin-right: 8px;
+}
+
+.app-preview .content .line {
+  margin-bottom: 8px;
+}
+
+.app-preview .content .line.short {
+  width: 60%;
 }
 
 /* 
@@ -178,7 +230,7 @@
 
 #banner {
   height: 100vh;
-  background-color: var(--theme-color-accent);
+  background-color: #45a2e0;
   color: var(--theme-color-secondary);
 }
 
