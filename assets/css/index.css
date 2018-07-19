@@ -10,6 +10,27 @@
 }
 
 /* 
+  How it works step
+  ==============================================================================
+*/
+
+.step {
+
+}
+
+.step img {
+
+}
+
+.step h1 {
+
+}
+
+.step p {
+  
+}
+
+/* 
   Catch text on Banner section
   ==============================================================================
 */
@@ -170,6 +191,21 @@
 
 .page-section {
   position: relative;
+}
+
+.page-section hgroup {
+  display: block;
+  padding: 56px 0 80px;
+  text-align: center;
+}
+
+.page-section hgroup h1 {
+  font-size: 52px;
+  font-weight: bold;
+}
+
+.page-section hgroup h2 {
+
 }
 
 .page-section .layout {
