@@ -80,8 +80,8 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
-.fonts-loaded body {
-  font-family: Lato sans-serif;
+.fonts-loaded body, .fonts-loaded {
+  font-family: "Lato" sans-serif;
 }
 
 a {
@@ -244,10 +244,6 @@ button, input, select, textarea {
   -webkit-appearance: none;
   -moz-appearance:    none;
   appearance:         none;
-}
-
-.fonts-loaded button, .fonts-loaded input, .fonts-loaded select, .fonts-loaded textarea {
-  font-family: Lato sans-serif;
 }
 
 button:focus, input:focus, select:focus, textarea:focus {

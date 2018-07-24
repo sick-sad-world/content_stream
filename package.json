@@ -4,7 +4,7 @@
   "description": "",
   "main": "assets/index.js",
   "scripts": {
-    "start": "SET NODE_ENV=development && webpack-dev-server --inline --port=3000 --mode=development",
+    "start": "SET NODE_ENV=development && webpack-dev-server --inline --port=3001 --mode=development",
     "prebundle": "rimraf ./dist",
     "bundle": "SET NODE_ENV=development && webpack --progress --mode=development",
     "prebuild": "rimraf ./build",
