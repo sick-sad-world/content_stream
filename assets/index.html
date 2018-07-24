@@ -17,21 +17,21 @@
   </div>
   <header class="page-section" id="banner">
     <div class="layout">
-      <div class="text">
+      <div class="cell">
         <article class="catch-text">
-            <hgroup>
-              <h1>Content Stream</h1>
-              <h2>Focus on important stuff - we will care other</h2>
-            </hgroup>
-            <p>
-              We will check the list of the top trending stories <br/>
-              from your selection and publish links to any new <br/>
-              ones on your site automatically.
-            </p>
-            <button class="solid">Try it for free!</button>
+          <hgroup>
+            <h1>Content Stream</h1>
+            <h2>Focus on important stuff - we will care other</h2>
+          </hgroup>
+          <p>
+            We will check the list of the top trending stories <br/>
+            from your selection and publish links to any new <br/>
+            ones on your site automatically.
+          </p>
+          <button class="solid">Try it for free!</button>
         </article>
       </div>
-      <div>
+      <div class="cell">
         <div class="app-preview">
           <div class="frame">
             <span class="controls"></span>
@@ -98,36 +98,42 @@
     </svg>
   </header>
   <section class="page-section" id="description">
-    <hgroup>
+    <hgroup class="page-heading">
       <h1>How it works</h1>
       <h2>Utilizing unique algorithms in search of viral content</h2>
     </hgroup>
     <div class="layout">
-      <article class="step">
-        <img src="" alt="">
-        <h1 class="text-h2">Pick topic, configure params</h1>
-        <p>
-          We allow you precisely configure outcome with “live” preview.
-          And prognose estimate results.
-        </p>
-      </article>
-      <article class="step">
-        <img src="" alt="">
-        <h1 class="text-h2">Our engine search for content</h1>
-        <p>
-          Our engine will constantly search 
-          for a content matching your criterea, and deliver found asap.
-        </p>
-      </article>
-      <article class="step">
-        <img src="" alt="">
-        <h1 class="text-h2">We deliver our best results</h1>
-        <p>
-          We post found results to your site 
-          in desired category. Also we provide detailed feedback and statistics 
-          on “streams” created.
-        </p>
-      </article>
+      <div class="cell">
+        <article class="step">
+          <img src="../img/checklist.svg" alt="">
+          <h1 class="text-h3">Pick topic, configure params</h1>
+          <p>
+            We allow you precisely configure outcome with “live” preview.
+            And prognose estimate results.
+          </p>
+        </article>
+      </div>
+      <div class="cell">
+        <article class="step">
+          <img src="../img/customization.svg" alt="">
+          <h1 class="text-h3">Our engine search for content</h1>
+          <p>
+            Our engine will constantly search 
+            for a content matching your criterea, and deliver found asap.
+          </p>
+        </article>
+      </div>
+      <div class="cell">
+        <article class="step">
+          <img src="../img/responsive.svg" alt="">
+          <h1 class="text-h3">We deliver our best results</h1>
+          <p>
+            We post found results to your site 
+            in desired category. Also we provide detailed feedback and statistics 
+            on “streams” created.
+          </p>
+        </article>
+      </div>
     </div>
     <svg class="bg" viewBox="0 0 1000 100">
       <use xlink:href="../img/clouds_triple.svg#clouds" />
@@ -136,7 +142,7 @@
   <section class="page-section" id="ribbon">
     <div class="layout">
       <div class="cell">
-        <p class="adv">
+        <p class="adv text-h3">
           Simple registration<br/>
           <b>14-day</b> free trial period<br/>
           <b>9.99$</b>/month paid subscription
@@ -177,25 +183,25 @@
   </section>
   <footer class="page-section" id="footer">
     <h3>We will call/text you back</h3>
-    <div class="layout">
-      <form action="" class="feedback">
-        <div class="lined-text-field">
-          <input type="text" name="contact" id="contact">
-          <button class="solid">Send</button>
-        </div>
-      </form>
-      <nav>
-        <span>Join us:</span>
-        <a href="">Facebook</a>
-        <a href="">Twitter</a>
-        <a href="">Opensharecount</a>
-        <a href="">Trendolizer pro</a>
-        <a href="">Lead Strories</a>
-        <a href="">Slack</a>
-      </nav>
-      <small>Trendolizer and LeadStories LLC 2018 &copy; - All rights reserved.</small>
-    </div>
-    <svg class="clouds"/>
+    <form action="" class="feedback">
+      <div class="lined-text-field">
+        <input type="text" name="contact" placeholder="your email or phone" id="contact">
+        <button class="solid">Send</button>
+      </div>
+    </form>
+    <nav>
+      <span>Join us:</span>
+      <a href="">Facebook</a>
+      <a href="">Twitter</a>
+      <a href="">Opensharecount</a>
+      <a href="">Trendolizer pro</a>
+      <a href="">Lead Strories</a>
+      <a href="">Slack</a>
+    </nav>
+    <small class="copy">Trendolizer and LeadStories LLC 2018 &copy; - All rights reserved.</small>
+    <svg class="bg" viewBox="0 0 1000 100">
+      <use xlink:href="../img/clouds.svg#clouds" />
+    </svg>
   </footer>
 </body>
 </html>
