@@ -4,7 +4,6 @@
 */
 
 .logotype {
-  width: 200px;
   height: var(--layout-navbar-height);
   background-color: rgba(255,255,255,.25);
 }
@@ -292,23 +291,21 @@
   z-index: 10;
 }
 
-#top-nav .layout {
-  grid-template-columns: auto auto 100px 100px;
-  grid-template-rows: var(--layout-navbar-height);
-  grid-template-areas: "logotype logotype sign-in sign-up";
-  align-items: center;
+
+#top-nav .layout .logotype {
+  grid-column: 1 / 4;
+  width: 100%;
 }
 
-#top-nav .logotype {
-  grid-area: logotype; 
+#top-nav .layout .buttons {
+  grid-column: 9 / 13;
+  align-self: center;
+  justify-self: end;
 }
 
-#top-nav .sign-in {
-  grid-area: sign-in;
-}
-
-#top-nav .sign-up {
-  grid-area: sign-up;
+#top-nav button {
+  width: 120px;
+  margin-left: var(--layout-gap);
 }
 
 #top-nav button.lined {
