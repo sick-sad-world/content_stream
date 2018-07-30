@@ -32,7 +32,7 @@ export class StoryFlasher {
 
 export class Form {
   constructor({el, onSubmit, className}) {
-    const isForm = this.el.nodeName === 'form';
+    const isForm = el.nodeName === 'form';
 
     this.el = el;
     this.form = (isForm) ? el : el.querySelector('form');
@@ -40,10 +40,10 @@ export class Form {
     this.onSubmit = onSubmit;
     this.cn = className;
 
-    this.el.querySelector('[data-action="cancel"]').addEventListtener('click', this.hide);
-    this.form.addEventListtener('submit', this.runSubmit);
+    this.el.querySelector('[data-action="cancel"]').addEventListener('click', this.hide);
+    this.form.addEventListener('submit', this.runSubmit);
     if (!isForm) {
-      this.el.querySelector('[data-action="submit"]').addEventListtener('click', this.runSubmit);
+      this.el.querySelector('[data-action="submit"]').addEventListener('click', this.runSubmit);
     }
   }
 
@@ -68,10 +68,10 @@ export class Modal extends Form {
     const { layover, openers } = options;
 
     this.layover = layover;
-    this.openers = openers;
-
-    this.layover.addEventListtener('click', this.hide);
-    this.openers.addEventListtener('click', this.show);
+    this.openers = Array.from(openers);
+    this.layover.addEventListener('click', this.hide);
+    Array.from(this.el.querySelectorAll('[data-action="cancel"]')).forEach((el) => el.addEventListener('click'));
+    this.openers.forEach((el) => el.addEventListener('click', this.show));
   }
 
   runSubmit = () => {

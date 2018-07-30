@@ -21,7 +21,7 @@ const logInModal = new Modal({
   className: 'visible',
   openers: document.querySelectorAll('[data-action="login"]'),
   onSubmit: (data, onClose, onError) => {
-    window.fetch('http://', data)
+    fetch('http://', data)
       .then(() => {
         window.location.href = `${window.location.href}/app`
         onClose();
