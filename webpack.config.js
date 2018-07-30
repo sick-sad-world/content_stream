@@ -24,13 +24,13 @@ const PLUGINS = [
   new HtmlWebpackPlugin({
     template: './index.html',
     filename: './index.html',
-    title: 'Content Stream',
+    title: 'TrendStreamer',
     chunks: ['index']
   }),
   new HtmlWebpackPlugin({
     template: './app.html',
     filename: './app.html',
-    title: 'Content Stream',
+    title: 'TrendStreamer',
     chunks: ['vendor', 'app']
   }),
   new BundleAnalyzerPlugin({

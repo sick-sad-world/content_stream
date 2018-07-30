@@ -12,7 +12,7 @@
         <!-- SVG LOGO GOES HERE -->
       </a>
       <div class="buttons">
-        <button class="lined">Sign in</button>
+        <button class="lined" data-action="login">Sign in</button>
         <button class="solid">Sign up</button>
       </div>
     </div>
@@ -22,13 +22,11 @@
       <div class="cell">
         <article class="catch-text">
           <hgroup>
-            <h1>Content Stream</h1>
-            <h2>Focus on important stuff - we will care other</h2>
+            <h1><%= htmlWebpackPlugin.options.title %></h1>
+            <h2>Enrich your website with a stream of trending content!</h2>
           </hgroup>
           <p>
-            We will check the list of the top trending stories <br/>
-            from your selection and publish links to any new <br/>
-            ones on your site automatically.
+            <%= htmlWebpackPlugin.options.title %> automatically looks for trending content on any topic you select and posts links to it on your website along with the title, description and thumbnail.  Automatically offer your readers an overview of the freshest and most trending content in your niche.
           </p>
           <button class="solid">Try it for free!</button>
         </article>
@@ -96,9 +94,6 @@
       </div>
     </div>
     <object class="bg" id="map" data="../img/map.svg#world" type="image/svg+xml" ></object>
-    <!-- <svg class="bg" id="map" viewBox="0 0 1339.12 809.72">
-      <use xlink:href="../img/map.svg#world" />
-    </svg> -->
   </header>
   <section class="page-section" id="description">
     <hgroup class="page-heading">
@@ -206,5 +201,39 @@
       <use xlink:href="../img/clouds.svg#clouds" />
     </svg>
   </footer>
+  <div class="layover" id="layover"></div>
+  <section class="modal" id="form-sign-in">
+    <header>
+      <h1>Welcome, log-in please</h1>
+      <button>
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+          <path d="M0 0h24v24H0z" fill="none"/>
+        </svg>
+      </button>
+    </header>
+    <form class="content">
+      <div class="row" data-action="error"></div>
+      <div class="row">
+        <div class="input-text">
+          <input type="email" name="email" value="" id="email" placeholder="Your email" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-text">
+          <input type="password" name="password" value="" id="password" placeholder="Your password" />
+        </div>
+        <a href="">Forgot password?</a>
+      </div>
+      <div class="row">
+        <p>Or login via popular providers.</p>
+        <button class="facebook"></button>
+      </div>
+    </form>
+    <footer>
+      <button class="lined" data-action="cancel">Cancel</button>
+      <button class="solid" data-action="submit">Log in</button>
+    </footer>
+  </section>
 </body>
 </html>

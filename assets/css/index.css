@@ -167,7 +167,9 @@
 .app-preview .content {
   padding: 8px 16px;
   list-style-type: none;
-  overflow-y: auto;
+  overflow: hidden;
+  flex: 1 1 auto;
+  position: relative;
 }
 
 .app-preview .content span {
@@ -181,12 +183,51 @@
 }
 
 .app-preview .content li {
+  --item-height: 76px;
+  --item-animation-duration: .3s;
   padding: 8px;
+  height: var(--item-height);
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  transition: background-color var(--item-animation-duration) ease-out, transform var(--item-animation-duration);
 }
 
-.app-preview .content li.fresh {
+.app-preview .content li:first-child {
+  animation-name: appear;
+  animation-duration: var(--item-animation-duration);
+  animation-fill-mode: backwards;
+  animation-delay: var(--item-animation-duration);
   background-color: #f9e594;
 }
+
+.app-preview .content li:nth-child(2) {
+  transform: translate3d(0, var(--item-height), 0);
+}
+
+.app-preview .content li:nth-child(3) {
+  transform: translate3d(0, calc(var(--item-height) * 2), 0);
+} 
+
+.app-preview .content li:nth-child(4) {
+  transform: translate3d(0, calc(var(--item-height) * 3), 0);
+} 
+
+.app-preview .content li:nth-child(5) {
+  transform: translate3d(0, calc(var(--item-height) * 4), 0);
+} 
+
+.app-preview .content li:nth-child(6) {
+  transform: translate3d(0, calc(var(--item-height) * 5), 0);
+} 
+
+.app-preview .content li:nth-child(7) {
+  transform: translate3d(0, calc(var(--item-height) * 6), 0);
+}
+
+.app-preview .content li:nth-child(8) {
+  transform: translate3d(0, calc(var(--item-height) * 7), 0);
+} 
 
 .app-preview .content .square {
   float: left;
@@ -504,4 +545,60 @@
 #footer .copy {
   margin: 30px auto 16px;
   display: block;
+}
+
+/* 
+  How it works step
+  ==============================================================================
+*/
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 320px;
+  height: 480px;
+  margin: auto;
+  z-index: 5;
+  background-color: var(--theme-color-secondary);
+  overflow: 0;
+  visibility: collapse;
+}
+
+.modal.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal > header {
+  flex: 0 0 auto;
+  padding: 8px;
+  border-bottom: 1px solid var(--theme-color-border);
+}
+
+.modal > header h1 {
+  font-size: var(--theme-size-h4);
+  font-weight: normal;
+}
+
+.modal > header button {
+  
+}
+
+.modal > header svg {
+  
+}
+
+.modal > .content {
+  flex: 1 1 auto;
+}
+
+.modal > footer {
+  flex: 0 0 auto;
+  padding: 8px;
+  border-top: 1px solid var(--theme-color-border);
+}
+
+.modal > footer button {
+  
 }
