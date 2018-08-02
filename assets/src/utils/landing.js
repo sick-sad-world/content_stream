@@ -1,3 +1,5 @@
+import throttle from 'lodash/throttle';
+
 export class StoryFlasher {
   constructor({nodes = [], container, delay = 3000}) {
     this.delay = delay;
@@ -86,5 +88,19 @@ export class Modal extends Form {
   hide = () => {
     this.layover.classList.remove(this.cn);
     this.el.classList.remove(this.cn);
+  }
+}
+
+export class CSSTransformer {
+  constructor({el, target = window, interval, transform}) {
+    this.el = el;
+    this.target = target;
+    this.interval = interval;
+    this.processor = throttle(this.makeProcessor(transform), interval);
+    target.addEventListener('scroll', throttle(interval));
+  }
+  makeProcessor = (map) => {
+    const transform = Array.entries(map).map(([prop, func]) => (scrollTop) => el.style[prop] = func(scrollTop));
+    return ({target}) => transform.forEach(func => func(target.scrollTop));
   }
 }

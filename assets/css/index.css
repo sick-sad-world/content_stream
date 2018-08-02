@@ -414,8 +414,9 @@
   border-color: var(--theme-color-secondary);
   color: var(--theme-color-secondary);
   z-index: var(--layout-depth-header);
+  background-color: rgba(#000,0);
+  transition: background-color .3s linear;
 }
-
 
 #top-nav .layout .logotype {
   grid-column: 1 / 4;

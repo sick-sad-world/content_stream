@@ -1,5 +1,5 @@
 import fontLoadingAnalyzer from './utils/fontLoadingAnalyzer';
-import { StoryFlasher, Modal } from './utils/index';
+import { StoryFlasher, Modal, Form, CSSTransformer } from './utils/landing';
 import '../css/theme.css';
 import '../css/index.css';
 
@@ -28,4 +28,16 @@ const logInModal = new Modal({
       })
       .catch(onError)
   },
+})
+
+const bannerSection = document.getElementById('banner');
+const headerOpacityTransform = new CSSTransformer({
+  el: document.getElementById('top-nav'),
+  interval: 300,
+  transform: {
+    backgroundColor: (scrollTop) => {
+      const percentage = (scrollTop >= bannerSection.clientHeight) ? 1 : (Math.round((scrollTop * 100) / bannerSection.clientHeight  * 100) / 100) / 100;
+      return `rgba(0,0,0,${percentage})`;
+    }
+  }
 })
