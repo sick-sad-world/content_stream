@@ -38,7 +38,9 @@ const PLUGINS = [
   }),
   new CopyWebpackPlugin([
     makeCopyEntry('img/map.svg'),
-    makeCopyEntry('img/clouds_triple.svg')
+    makeCopyEntry('img/clouds_triple.svg'),
+    makeCopyEntry('img/clouds.svg'),
+    makeCopyEntry('img/logo_transparent.svg')
   ])
 ];
 

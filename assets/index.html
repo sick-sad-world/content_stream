@@ -8,8 +8,8 @@
 <body>
   <div class="page-section" id="top-nav">
     <div class="layout">
-      <a href="" class="logotype">
-        <!-- SVG LOGO GOES HERE -->
+      <a href="/" class="logotype">
+        <object data="../img/logo_transparent.svg" type="image/svg+xml" ></object>
       </a>
       <div class="buttons">
         <button class="lined" data-action="login">Sign in</button>
@@ -205,7 +205,7 @@
   <section class="modal" id="form-sign-in">
     <header>
       <h1>Welcome, log-in please</h1>
-      <button class="icon">
+      <button class="icon" data-action="cancel">
         <svg role="icon" width="24" height="24" viewBox="0 0 24 24">
           <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
           <path d="M0 0h24v24H0z" fill="none"/>
@@ -213,7 +213,6 @@
       </button>
     </header>
     <form class="content login-form">
-      <div class="row" data-action="error"></div>
       <div class="row">
         <div class="input-text">
           <input type="email" name="email" value="" id="email" placeholder="Your email" />
@@ -224,6 +223,10 @@
           <input type="password" name="password" value="" id="password" placeholder="Your password" />
         </div>
         <a href="" class="helper">Forgot password?</a>
+      </div>
+      <div class="row controls">
+        <button class="solid" type="submit">Log in</button>
+        <button class="lined" type="reset" data-action="cancel">Cancel</button>
       </div>
       <div class="row">
         <h5>Or login via popular providers.</h5>
@@ -252,10 +255,7 @@
           </button>
         </div>
       </div>
-      <div class="row controls">
-        <button class="solid" data-action="submit">Log in</button>
-        <button class="lined" data-action="cancel">Cancel</button>
-      </div>
+      <div class="error" data-action="error"></div>
     </form>
   </section>
 </body>

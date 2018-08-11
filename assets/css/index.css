@@ -4,8 +4,12 @@
 */
 
 .logotype {
+  padding: 2px 0;
   height: var(--layout-navbar-height);
-  background-color: rgba(255,255,255,.25);
+}
+
+.logotype object {
+  height: calc(var(--layout-navbar-height) - 4px);
 }
 
 .counter {
@@ -99,7 +103,6 @@
   border-radius: 2px;
   background-color: #e8e8e8;
   color: #fff;
-  box-shadow: var(--theme-shadow-z3);
   --control-size: 16px;
 }
 
@@ -247,6 +250,7 @@
 */
 
 .login-form {
+  --btn-size: 48px;
   padding: 0 var(--layout-gap);
 }
 
@@ -318,12 +322,48 @@
 
 .login-form .controls {
   text-align: center;
-  margin: calc(var(--layout-gap) * 2) 0;
+  /* margin: calc(var(--layout-gap) * 2) 0; */
 }
 
 .login-form .controls button {
   width: 120px;
+  height: var(--btn-size);
+  line-height: var(--btn-size);
+  border-radius: calc(var(--btn-size) * 0.5);
   margin: 0 calc(var(--layout-gap) * 0.5);
+}
+
+.login-form .error {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: var(--layout-gap);
+  right: var(--layout-gap);
+  padding: 8px var(--layout-gap);
+  background-color: #fff;
+  transform: translate3d(0, calc(var(--layout-gap) * -2) ,0);
+  box-shadow: var(--theme-shadow-z2);
+  opacity: 0;
+  transition: transform .2s, opacity .2s;
+  visibility: collapse;
+}
+
+.login-form .error:after {
+  display: block;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--theme-color-error);
+  opacity: .5;
+}
+
+.login-form .error.visible {
+  transform: translate3d(0, calc(var(--layout-gap) * -1) ,0);
+  opacity: 1;
+  visibility: visible;
 }
 
 /* 
@@ -415,11 +455,11 @@
   color: var(--theme-color-secondary);
   z-index: var(--layout-depth-header);
   background-color: rgba(#000,0);
-  transition: background-color .3s linear;
+  transition: background-color .15s linear;
 }
 
 #top-nav .layout .logotype {
-  grid-column: 1 / 4;
+  grid-column: 1 / 3;
   width: 100%;
 }
 
@@ -461,6 +501,10 @@
 
 #banner .layout .cell:last-child {
   grid-column: 9 / 13;
+}
+
+#banner .app-preview {
+  box-shadow: var(--theme-shadow-z4);
 }
 
 #banner .bg {
@@ -651,12 +695,16 @@
   border-radius: 2px;
   z-index: var(--layout-depth-modal);
   background-color: var(--theme-color-secondary);
+  box-shadow: var(--theme-shadow-z5);
+  transform: translate3d(0,-10vh,0);
+  transition: transform .2s, opacity .2s;
   opacity: 0;
   visibility: collapse;
 }
 
 .modal.visible {
   opacity: 1;
+  transform: translate3d(0,0,0);
   visibility: visible;
 }
 
@@ -672,6 +720,10 @@
 .modal > header h1 {
   font-size: var(--theme-size-h4);
   font-weight: normal;
+}
+
+.modal > header > button {
+  margin-right: calc(var(--layout-gap) * -0.5);
 }
 
 .modal > .content {

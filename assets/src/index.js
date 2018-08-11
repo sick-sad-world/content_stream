@@ -21,23 +21,22 @@ const logInModal = new Modal({
   className: 'visible',
   openers: document.querySelectorAll('[data-action="login"]'),
   onSubmit: (data, onClose, onError) => {
-    fetch('http://', data)
+    fetch('http://123.afaf', data)
       .then(() => {
         window.location.href = `${window.location.href}/app`
-        onClose();
-      })
-      .catch(onError)
+      }, onError)
   },
 })
 
 const bannerSection = document.getElementById('banner');
 const headerOpacityTransform = new CSSTransformer({
   el: document.getElementById('top-nav'),
-  interval: 300,
+  interval: 150,
+  initial: true,
   transform: {
-    backgroundColor: (scrollTop) => {
-      const percentage = (scrollTop >= bannerSection.clientHeight) ? 1 : (Math.round((scrollTop * 100) / bannerSection.clientHeight  * 100) / 100) / 100;
-      return `rgba(0,0,0,${percentage})`;
+    backgroundColor: (scrollTop = 0) => {
+      const percentage = (scrollTop >= bannerSection.clientHeight) ? 1 : (Math.round((scrollTop * 100) / (bannerSection.clientHeight * 0.5)  * 100) / 100) / 100;
+      return `rgba(69,162,224,${percentage})`;
     }
   }
 })

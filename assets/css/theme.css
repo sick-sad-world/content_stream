@@ -69,6 +69,7 @@
   --theme-color-accent-secondary: #f1c40f;
   --theme-color-border: #99afc5;
   --theme-color-highlight: #ecf0f1;
+  --theme-color-error: #ff574d;
 
   --theme-size-element: calc(var(--layout-unit) * 4);
   --theme-size-element-gutter: 16px;
@@ -82,11 +83,11 @@
   --theme-size-h5: 13px;
   --theme-size-h6: 13px;
 
-  --theme-shadow-z1: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24);
-  --theme-shadow-z2: 0 2px 4px rgba(0,0,0,.16), 0 2px 4px rgba(0,0,0,.23);
-  --theme-shadow-z3: 0 10px 20px rgba(0,0,0,.19), 0 6px 6px rgba(0,0,0,.23);
-  --theme-shadow-z4: 0 14px 28px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.22);
-  --theme-shadow-z5: 0 19px 38px rgba(0,0,0,.30), 0 15px 12px rgba(0,0,0,.22);
+  --theme-shadow-z1: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
+  --theme-shadow-z2: 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12), 0 2px 4px -1px rgba(0,0,0,.4);
+  --theme-shadow-z3: 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12), 0 3px 5px -1px rgba(0,0,0,.4);
+  --theme-shadow-z4: 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12), 0 5px 5px -3px rgba(0,0,0,.4);
+  --theme-shadow-z5: 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.4);
 }
 
 *, *:before, *:after {

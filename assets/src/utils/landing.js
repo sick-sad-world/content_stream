@@ -1,13 +1,21 @@
-import throttle from 'lodash/throttle';
+import throttle from 'lodash/throttle'
+
+const on = (el, evt, func) => {
+  if (Array.isArray(el)) {
+    el.forEach((e) => e.addEventListener(evt, func))
+  } else {
+    el.addEventListener(evt, func)
+  }
+}
 
 export class StoryFlasher {
   constructor({nodes = [], container, delay = 3000}) {
-    this.delay = delay;
-    this.nodes = Array.from(nodes).sort(() => 0.5 - Math.random());
-    this.container = container;
-    this.nodeClass = 'light';
-    this.interval = null;
-    this.node = 0;
+    this.delay = delay
+    this.nodes = Array.from(nodes).sort(() => 0.5 - Math.random())
+    this.container = container
+    this.nodeClass = 'light'
+    this.interval = null
+    this.node = 0
   }
 
   removeClass = (className) => (el) => {
@@ -15,92 +23,108 @@ export class StoryFlasher {
   }
 
   do = () => {
-    this.nodes.forEach(this.removeClass(this.nodeClass));
+    this.nodes.forEach(this.removeClass(this.nodeClass))
     this.nodes[this.node].classList.add(this.nodeClass)
-    this.container.insertBefore(this.container.children[this.container.children.length - 1], this.container.firstElementChild);
-    this.node = (this.node < this.nodes.length - 1) ? this.node + 1 : 0;
+    this.container.insertBefore(this.container.children[this.container.children.length - 1], this.container.firstElementChild)
+    this.node = (this.node < this.nodes.length - 1) ? this.node + 1 : 0
   }
 
   start = () => {
-    if (this.interval) return false;
-    this.interval = setInterval(this.do, this.delay);
+    if (this.interval) return false
+    this.interval = setInterval(this.do, this.delay)
   }
   
   stop = () => {
-    clearInterval(this.interval);
-    this.interval = null;
+    clearInterval(this.interval)
+    this.interval = null
   }
 }
 
 export class Form {
-  constructor({el, onSubmit, className}) {
-    const isForm = el.nodeName === 'form';
+  constructor({el, onSubmit, className, setInnerListeners = true}) {
+    const isForm = el.nodeName === 'form'
 
-    this.el = el;
-    this.form = (isForm) ? el : el.querySelector('form');
-    this.error = el.querySelector('[data-action="error"]');
-    this.onSubmit = onSubmit;
-    this.cn = className;
+    this.el = el
+    this.cn = className
+    this.onSubmit = onSubmit
+    this.form = (isForm) ? el : el.querySelector('form')
+    this.error = el.querySelector('[data-action="error"]')
+    this.cancel = Array.from(this.el.querySelectorAll('[data-action="cancel"]'))
 
-    this.el.querySelector('[data-action="cancel"]').addEventListener('click', this.hide);
-    this.form.addEventListener('submit', this.runSubmit);
-    if (!isForm) {
-      this.el.querySelector('[data-action="submit"]').addEventListener('click', this.runSubmit);
+    on(this.form, 'submit', this.runSubmit)
+    if (setInnerListeners) {
+      on(this.cancel, 'click', this.reset)
+      if (!isForm) {
+        on(this.el.querySelector('[data-action="submit"]'), 'click', this.runSubmit)
+      }
     }
   }
 
   setError = ({error}) => {
-    this.error.classList.add(this.cn);
-    this.error.innerText = error;
+    this.error.classList.add(this.cn)
+    this.error.innerText = error
   }
 
   clearError = () => {
-    this.error.classList.remove(this.cn);
-    this.error.innerText = '';
+    this.error.classList.remove(this.cn)
+    this.error.innerText = ''
   }
 
-  runSubmit = () => {
-    this.onSubmit(new FormData(this.form), this.setError)
+  reset = (e) => {
+    e.preventDefault()
+    this.clearError()
+    this.form.reset()
+  }
+
+  runSubmit = (e) => {
+    e.preventDefault()
+    this.onSubmit(new FormData(this.form), this.reset, this.setError)
   }
 }
 
 export class Modal extends Form {
   constructor(options) {
-    super(options);
-    const { layover, openers } = options;
+    super({...options, setInnerListeners: false})
 
-    this.layover = layover;
-    this.openers = Array.from(openers);
-    this.layover.addEventListener('click', this.hide);
-    Array.from(this.el.querySelectorAll('[data-action="cancel"]')).forEach((el) => el.addEventListener('click'));
-    this.openers.forEach((el) => el.addEventListener('click', this.show));
-  }
+    const { layover, openers } = options
+    
+    this.layover = layover
+    this.openers = Array.from(openers)
 
-  runSubmit = () => {
-    this.onSubmit(new FormData(this.form), this.hide, this.setError)
+    on(this.cancel, 'click', this.reset)
+    on(this.layover, 'click', this.reset)
+    on(this.openers, 'click', this.show)
   }
 
   show = () => {
-    this.layover.classList.add(this.cn);
-    this.el.classList.add(this.cn);
+    this.layover.classList.add(this.cn)
+    this.el.classList.add(this.cn)
   }
 
-  hide = () => {
-    this.layover.classList.remove(this.cn);
-    this.el.classList.remove(this.cn);
+  reset = () => {
+    this.clearError()
+    this.form.reset()
+    this.layover.classList.remove(this.cn)
+    this.el.classList.remove(this.cn)
   }
 }
 
 export class CSSTransformer {
-  constructor({el, target = window, interval, transform}) {
-    this.el = el;
-    this.target = target;
-    this.interval = interval;
-    this.processor = throttle(this.makeProcessor(transform), interval);
-    target.addEventListener('scroll', throttle(interval));
+  constructor({el, target = window, interval, transform, initial}) {
+    this.el = el
+    this.target = target
+    this.interval = interval
+    this.processor = this.makeProcessor(transform)
+    on(this.target, 'scroll', throttle(this.processor, interval))
+    if (initial) {
+      this.processor({target: {scrollTop: this.target.scrollY || this.target.scrollTop}})
+    }
   }
+  
   makeProcessor = (map) => {
-    const transform = Array.entries(map).map(([prop, func]) => (scrollTop) => el.style[prop] = func(scrollTop));
-    return ({target}) => transform.forEach(func => func(target.scrollTop));
+    const transform = Object.entries(map).map(([prop, func]) => (scrollTop) => this.el.style[prop] = func(scrollTop))
+    return ({target}) => {
+      transform.forEach(func => func((target.scrollingElement || target).scrollTop))
+    }
   }
 }
