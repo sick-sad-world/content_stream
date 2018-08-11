@@ -9,7 +9,7 @@ const { mode, port } = require('yargs').argv;
 
 const CONTEXT = 'assets';
 const P = mode === 'production'
-const DEST = (P) ? '/build' : '/dist';
+const DEST = (P) ? '../showcase' : '../showcase';
 
 const Extract = new ExtractTextPlugin({
   filename: '[name].css'
