@@ -4,11 +4,11 @@
   "description": "",
   "main": "assets/index.js",
   "scripts": {
-    "start": "SET NODE_ENV=development && webpack-dev-server --inline --port=3001 --mode=development",
+    "start": "webpack-dev-server --inline --port=3001 --mode=development",
     "prebundle": "rimraf ./dist",
-    "bundle": "SET NODE_ENV=development && webpack --progress --mode=development",
+    "bundle": "webpack --progress --mode=development",
     "prebuild": "rimraf ./build",
-    "build": "SET NODE_ENV=production && webpack --progress --mode=production",
+    "build": "webpack --progress --mode=production",
     "clean": "rimraf ./dist ./build"
   },
   "author": "Ihor Koptielov",
